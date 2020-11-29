@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "firstmod:smile_block"
-  },
-  "result": "firstmod:smile",
-  "experience": 1.0,
-  "cookingtime": 100
-}
