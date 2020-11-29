@@ -2,132 +2,111 @@
     <head>
         <title> Forge 1.15 Tutorial </title>
         <script src="lib/markdownit.js"></script>
-        <link rel="stylesheet" href="lib/bootstrap.css">
         <link rel="stylesheet" href="lib/md.css">
-    </head>
-    <body>
-        <div class="row">
-            <div class="col-sm-11" style="max-width: 1000px; min-width: 200px;">
-                <div style="text-align: center; margin-left: 25px;">
-                    <select class="form-control" id="tutorial-select" onchange="setTutorial()"></select>
-                </div>
-                <br>
-                <div id="tutorial" class="t markdown-body"> Markdown Rendering Failed. </div>
-                <br>
-                <div style="text-align: center; margin-left: 25px;">
-                    <button class="btn btn-primary" style="width: 19%;" onclick="next(-1)">Back</button>
-                    <button class="btn btn-primary" style="width: 80%;" onclick="next(1)">Next Tutorial</button> <br> <br>
-                </div>
-            </div>
-            <div style="position: fixed; right:10; top: 100">
-                    <div class="extra">
-                        <a href="https://github.com/LukeGrahamLandry/forge-modding-tutorial">
-                            <img src="img/github.png" width="50">
-                            <span class="tooltiptext">View full code for my tutorials on github</span>
-                        </a> 
-                    </div> <br> <br>
+        <link rel="stylesheet" href="lib/style.css">
 
-                    <div class="extra">
-                        <a href="https://discord.gg/VbZVnRd">
-                            <img src="img/discord.png" width="50">
-                            <span class="tooltiptext">Ask questions and chat on my discord server</span>
-                        </a> 
-                    </div> <br> <br>
-
-                    <div class="extra">
-                        <a href="https://www.youtube.com/playlist?list=PLxBLp3RqmUMEU5vrtMY6tgfP2lnJD0OUj">
-                            <img src="img/youtube.png" width="50">
-                            <span class="tooltiptext">Watch video versions of these tutorials on youtube</span>
-                        </a> 
-                    </div> <br> <br>
-
-                    <div class="extra">
-                        <a href="https://www.patreon.com/LukeGrahamLandry">
-                            <img src="img/patreon.png" width="50">
-                            <span class="tooltiptext">Support me by donating on patreon</span>
-                        </a> 
-                    </div> <br> <br>
-            </div>
-        </div>
-
-        <div id="ads">
-            &rarr; <button onclick="closeAd()"> close ad </button> &larr; <br>
-            <iframe data-aa="1478145" src="//ad.a-ads.com/1478145?size=250x250&background_color=212121" scrolling="no" style="width:250px; height:250px; border:0px; padding:0; overflow:hidden" allowtransparency="true"></iframe>
-            <br> Untrusted! Use at own risk!
-        </div>
-        
-        
         <style>
             body {
-                background-color: #313131;
-                overflow-x: hidden;
-            }
-        
-            #tutorial {
-                margin-left: 25px;
-                border: 2px solid #e1e4e8;
-                border-radius: 6px;
-                background-color: #fff;
-                font-size: 14px;
-                line-height: 1.5;
-                color: #24292e;
-                padding: 32px;
-            }
-
-            .extra {
-                position: relative;
-            }
-
-            /* Tooltip text */
-            .extra .tooltiptext {
-                visibility: hidden;
-                width: 120px;
-                background-color: black;
-                color: #fff;
                 text-align: center;
-                padding: 5px 0;
-                border-radius: 6px;
-                
-                /* Position the tooltip text - see examples below! */
-                position: absolute;
-                z-index: 1;
-                top: -5px;
-                right: 15px;
             }
 
-            /* Show the tooltip text when you mouse over the tooltip container */
-            .extra:hover .tooltiptext {
-                visibility: visible;
+            #content {
+                text-align: left;
+                width: 100%;
+                max-width: 800px;
+                display: inline-block;
+                font-size: 13pt;
             }
-        
-            #ads {
+
+            #raw-text {
+                color: blue;
+            }
+
+            .app {
+                width: 100px;
+                height: 100px;
+                text-align: center;
+                font-weight: bold;
+                margin: 1rem;
+                padding: 1rem;
+                display: inline-block;
+            }
+            
+            #toggle {
+                z-index: 10;
+                right: 5px;
+                top: 5px;
                 position: fixed;
-                bottom: 10px;
-                right: 10px;
-                background-color: #202020;
-                color: whitesmoke;
-                text-align: center;
-                border: 2px solid black;
-                border-radius: 10px;
             }
         </style>
+        <link rel="stylesheet" id="theme" href="">
+    </head>
+    <body>
+        <div id="toggle">
+            <label class="switch">
+                <input type="checkbox" id="dark" onclick="updateDarkmode()">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div style="position: sticky;">
+            <select class="form-control" style="width: 800px;" id="tutorial-select" onchange="setTutorial()"></select>
+        </div>
+        <br><br>
+        <div id="content" class="t markdown-body"> Loading Article... </div>
+        <br> <br>
+        <a id="rawtext"> download raw markdown for this article </a> <br> <br> <br>
+
+        <div style="width: 80%; display: inline-block;">
+            <button class="btn btn-primary" style="width: 19%;" onclick="next(-1)">Back</button>
+            <button class="btn btn-primary" style="width: 80%;" onclick="next(1)">Next Tutorial</button> <br> <br>
+        </div>
+
+        <div>
+            <a href="https://github.com/LukeGrahamLandry/forge-modding-tutorial">
+                <div class="app">
+                    <img src="/img/github.png" style="width: 70px">
+                </div>
+            </a>
+
+            <a href="https://discord.gg/VbZVnRd">
+                <div class="app">
+                    <img src="/img/discord.png" style="width: 70px">
+                </div>
+            </a>
+
+            <a href="https://www.youtube.com/playlist?list=PLxBLp3RqmUMEU5vrtMY6tgfP2lnJD0OUj">
+                <div class="app">
+                    <img src="/img/youtube.png" style="width: 70px">
+                </div>
+            </a>
+
+            <a href="https://www.patreon.com/LukeGrahamLandry">
+                <div class="app">
+                    <img src="/img/patreon.png" style="width: 70px">
+                </div>
+            </a>
+    </div>
         
+    <script src="lib/script.js"></script>
         <script>
-
-            function closeAd(){
-                document.getElementById("ads").style.display = "none";
-            }
-
-            function httpGet(url){
-                let xmlHttp = new XMLHttpRequest();
-                xmlHttp.open("GET", url, false); // synchronous
-                xmlHttp.send();
-                return {
-                    code: xmlHttp.status,
-                    text: xmlHttp.responseText
+            function updateDarkmode(){
+                let dark = document.getElementById("dark").checked;
+                let sheet;
+                if (dark){
+                    sheet = "dark-theme.css";
+                } else {
+                    sheet = "";
                 }
+                document.getElementById("theme").href = sheet;
+                setCookie("darkmode", sheet, 365);
             }
-        
+
+            // set darkmode from cookie
+            if (getCookie("darkmode")) {
+                document.getElementById("dark").checked = true;
+                updateDarkmode();
+            }
+
             var md = window.markdownit();
         
             let i = location.hash.substring(1); // ie .../tutorial.html#4 -> 4
@@ -140,31 +119,41 @@
                 code += "<option value=" + i +" >" + files[i] + "</option>"
             }
             document.getElementById("tutorial-select").innerHTML = code;
-        
-            function loadText(){
-                let name = files[i];
-                let res = httpGet("tutorials/" + name + ".md");
-                let result;
-                if (res.code == 200){
-                    result = md.render(res.text);
+
+            function loadFile(path){
+                document.getElementById("rawtext").href = path;
+                
+                let t = (new Date()).getTime() / 1000;
+                let response = httpGet(path + "?timestamp=" + t);
+                let html;
+                if (response.code == 200){
+                    html = md.render(response.text);
+                    document.getElementById("content").innerHTML = html;
                 } else {
-                    result = md.render(httpGet("no_more.md").text);
+                    loadFile("no_more.md");
+                    document.getElementById("rawtext").style.display = "none";
                 }
-                document.getElementById("tutorial").innerHTML = result;
             }
-            loadText()
+        
+            function updateDisplayedTutorial(){
+                let name = files[i];
+                let path = "tutorials/" + name + ".md"
+                loadFile(path);
+            }
+
+            updateDisplayedTutorial()
             document.getElementById("tutorial-select").value = i;
         
             function next(shift){
                 i = Math.max(Number(i) + Number(shift), 0);
-                loadText();
+                updateDisplayedTutorial();
                 location.hash = i;
                 document.getElementById("tutorial-select").value = i;
                 window.scrollTo(0, 0);
             }
             function setTutorial(){
                 i = document.getElementById("tutorial-select").value;
-                loadText();
+                updateDisplayedTutorial();
                 location.hash = i;
             }
             
