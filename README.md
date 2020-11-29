@@ -9,5 +9,3 @@
 
 ## Support Me
 - https://www.patreon.com/LukeGrahamLandry
-- Donate ERC20 tokens: 0xEC605a18aB47f52eEf4f26d9841856d0e4B41556
- 

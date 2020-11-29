@@ -32,7 +32,7 @@ public static final RegistryObject<Item> PINK_SWORD = ITEMS.register("pink_sword
 ```
 
 The other tools are the same just change the SwordItem to PickaxeItem, AxeItem, ShovelItem or HoeItem. The hoe 
-does not take the damage parameter. 
+does not take the damage parameter (but it does on 1.16). 
 
 ## Assets
 

@@ -16,7 +16,7 @@ public class BlockInit {
 }
 ```
 
-The Block constructer in the supplier takes a Block.Propertise object made by calling the create method. The create 
+The Block constructer in the supplier takes a Block.Properties object made by calling the create method. The create 
 method takes a Material which sets some things like whether its flamable.  
 
 Then there are a bunch of methods you can call to set different properties. hardnessAndResistance lets you pass in 
@@ -44,25 +44,22 @@ public class BlockInit {
 Then make a static function with the SubscribeEvent annotation. Its argument will be the Item RegistryEvent 
 so it fires when items are suposed to be registered. 
 
-```java
-@SubscribeEvent
-public static void onRegisterItems(final RegistryEvent.Register<Item> event) {
-}
-```
-
 In that function get the Item registery and loop through all the blocks. For each block, 
 we make an Item.Properties that puts it in our creative tab. Then we make a BlockItem with 
 those properties to place our block. We register the BlockItem with the same registry name as the block. 
 
 ```java
-final IForgeRegistry<Item> registry = event.getRegistry();
+@SubscribeEvent
+public static void onRegisterItems(final RegistryEvent.Register<Item> event) {
+    final IForgeRegistry<Item> registry = event.getRegistry();
 
-BLOCKS.getEntries().stream().map(RegistryObject::get).forEach( (block) -> {
-    final Item.Properties properties = new Item.Properties().group(ItemInit.ModItemGroup.instance);
-    final BlockItem blockItem = new BlockItem(block, properties);
-    blockItem.setRegistryName(block.getRegistryName());
-    registry.register(blockItem);
-});
+    BLOCKS.getEntries().stream().map(RegistryObject::get).forEach( (block) -> {
+        final Item.Properties properties = new Item.Properties().group(ItemInit.ModItemGroup.instance);
+        final BlockItem blockItem = new BlockItem(block, properties);
+        blockItem.setRegistryName(block.getRegistryName());
+        registry.register(blockItem);
+    });
+}
 ```
 
 ## Main Class

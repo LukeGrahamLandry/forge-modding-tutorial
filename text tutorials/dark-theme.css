@@ -13,6 +13,7 @@ body {
 
 #content pre {
     background-color: rgb(32, 32, 32);
+    scrollbar-color:  rgb(53, 53, 53)  rgb(20, 20, 20);  /* new but only for firefox*/
 }
 
 #ads {
@@ -29,6 +30,17 @@ body {
     color: rgb(0, 162, 255);
 }
 
+.form-control {
+    color: #b0bfcf;
+    background-color: #333;
+    border-color: #272727;
+}
+
+.markdown-body hr, .markdown-body .border-bottom, .markdown-body h2 {
+border-bottom-color: rgb(49, 49, 49);
+}
+
+
 /*deprecated but works in  Chrome/Edge/Safari*/
 body::-webkit-scrollbar {
     width: 15px;               /* width of the entire scrollbar */
@@ -42,6 +54,17 @@ body::-webkit-scrollbar {
     border: 3px solid rgb(20, 20, 20);
   }
 
-  .markdown-body hr, .markdown-body .border-bottom, .markdown-body h2 {
-    border-bottom-color: rgb(49, 49, 49);
+  #content pre::-webkit-scrollbar {
+    width: 15px;               /* width of the entire scrollbar */
   }
+  #content pre::-webkit-scrollbar-track {
+    background: rgb(20, 20, 20);        /* color of the tracking area */
+  }
+  #content pre::-webkit-scrollbar-thumb {
+    background-color: rgb(53, 53, 53);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid rgb(20, 20, 20);
+  }
+
+  
+

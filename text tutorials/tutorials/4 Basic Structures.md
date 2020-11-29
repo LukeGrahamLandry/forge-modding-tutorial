@@ -3,8 +3,8 @@ This one is slightly more advanced, you might want to skip it and come back late
 
 In this tutorial we make a structure that generates in the world (with a randomly filled chest). 
 
-The code for this is based on this repository: https://github.com/TelepathicGrunt/StructureTutorialMod  
-big thank to them, go star it or something, idk
+The code for this is based on this repository: [TelepathicGrunt](https://github.com/TelepathicGrunt/StructureTutorialMod).
+Big thanks to them, go star it or something, idk
 
 ## Structure Block
 
@@ -33,7 +33,7 @@ change the mod_id to your mod id that you set in your main class).
 Make a new package called world and in that one called stuctures. In that package make a class called 
 StructureNameStructure (change StructureName to something of your choice, I called mine House).
 
-The code for this class is [here](https://github.com/LukeGrahamLandry/forge-modding-tutorial/blob/master/src/main/java/com/lukegraham/firstmod/world/structures/HouseStructure.java) but I'll explain what it's doing. All you have to change is:
+The code for this class is on github: [HouseStructure.java](https://github.com/LukeGrahamLandry/forge-modding-tutorial/blob/master/src/main/java/com/lukegraham/firstmod/world/structures/HouseStructure.java), but I'll explain what it's doing. All you have to change is:
 
 ```
 HouseStructure    -> StructureNameStructure
@@ -59,7 +59,7 @@ we're about to make to actually generate it.
 ## Structure Pieces 
 
 In your structures package, make a new class called StructureNamePieces (again, use your structure name). 
-The code for this class is [here](https://github.com/LukeGrahamLandry/forge-modding-tutorial/blob/master/src/main/java/com/lukegraham/firstmod/world/structures/HousePieces.java), and again, I'll explain. 
+The code for this class is on github: [HousePieces.java](https://github.com/LukeGrahamLandry/forge-modding-tutorial/blob/master/src/main/java/com/lukegraham/firstmod/world/structures/HousePieces.java), and again, I'll explain. 
 
 The first feild is just the resource slocation of the structure's nbt file. If you have multiple nbt files to put together you can put thier 
 offsets from where the structure starts spawning in the OFFSETS map. For example if you have one piece that is the walls and one that's the roof, you might have the walls one up from the ground and the roof 5 up to be above the walls. The convention seems to be to just do the y offset in the map and the x/z later. 

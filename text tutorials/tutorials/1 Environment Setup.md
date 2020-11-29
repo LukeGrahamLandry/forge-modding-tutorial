@@ -4,17 +4,17 @@ In this tutorial we download java 8, forge and IntelliJ. We also rename our main
 
 ## Downloading
 
-First, download the JDK (java 8 development kit). Go to [this website](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html) and select your operating system. It will ask you to make an account but you can borrow someone else's credentials from 
+First, download the JDK (java 8 development kit). Go to [oracle](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html) and select your operating system. It will ask you to make an account but you can borrow someone else's credentials from 
 [bugmenot](http://bugmenot.com/view/oracle.com). Just copy paste them in and if the first doesn't work, try the next one. 
 
-Then download the JRE (java 8 runtime environemnt) from [this website](https://oracle.com/java/technologies/javase-jre8-downloads.html). 
+Then download the JRE (java 8 runtime environemnt) from [oracle](https://oracle.com/java/technologies/javase-jre8-downloads.html). 
 Same as before, just pick your operating system, accept the terms and click download. 
 
-Next you need the forge MDK (mod development kit) from [this website](https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.15.2.html). Get the recommended version cause its the most likely to work. When you click the button to download the MDK it 
+Next you need the forge MDK (mod development kit) from [minecraftforge](https://files.minecraftforge.net/maven/net/minecraftforge/forge/index_1.15.2.html). Get the recommended version cause its the most likely to work. When you click the button to download the MDK it 
 will send you to a page with ads. Very important not to click any of them (even if they look like pop ups from your OS), 
 just wait a few seconds until the skip button appears in the top right and click that to download. 
 
-Then you need an IDE to write your code. Download intellij from [this website](https://www.jetbrains.com/idea/download) 
+Then you need an IDE to write your code. Download intellij from [jetbrains](https://www.jetbrains.com/idea/download) 
 and get the community addition because it's free.
 
 ## Installing

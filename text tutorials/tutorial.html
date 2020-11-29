@@ -4,6 +4,7 @@
         <script src="lib/markdownit.js"></script>
         <link rel="stylesheet" href="lib/md.css">
         <link rel="stylesheet" href="lib/style.css">
+        <link rel="shortcut icon" href="img/logo.png"/>
 
         <style>
             body {
@@ -15,7 +16,7 @@
                 width: 100%;
                 max-width: 800px;
                 display: inline-block;
-                font-size: 13pt;
+                font-size: 12pt;
             }
 
             #raw-text {
@@ -27,8 +28,8 @@
                 height: 100px;
                 text-align: center;
                 font-weight: bold;
-                margin: 1rem;
-                padding: 1rem;
+                margin: 0.5rem;
+                padding: 0.5rem;
                 display: inline-block;
             }
             
@@ -38,30 +39,46 @@
                 top: 5px;
                 position: fixed;
             }
+
+            #tutorial-select {
+                width: 100%;
+                max-width: 800px;
+            }
+
+            @media print {
+                #content {
+                    font-size: 10pt;
+                    color: black;
+                    background-color: white;
+                }
+                .hide-for-print {
+                    display: none !important;
+                }
+            }
         </style>
         <link rel="stylesheet" id="theme" href="">
     </head>
     <body>
-        <div id="toggle">
+        <div id="toggle" class="hide-for-print">
             <label class="switch">
                 <input type="checkbox" id="dark" onclick="updateDarkmode()">
                 <span class="slider round"></span>
             </label>
         </div>
-        <div style="position: sticky;">
-            <select class="form-control" style="width: 800px;" id="tutorial-select" onchange="setTutorial()"></select>
+        <div class="hide-for-print">
+            <select class="form-control" id="tutorial-select" onchange="setTutorial()"></select>
         </div>
         <br><br>
         <div id="content" class="t markdown-body"> Loading Article... </div>
         <br> <br>
-        <a id="rawtext"> download raw markdown for this article </a> <br> <br> <br>
+        <a id="rawtext" class="hide-for-print"> download raw markdown for this article </a> <br> <br> <br>
 
-        <div style="width: 80%; display: inline-block;">
+        <div style="width: 100%; max-width: 800px; display: inline-block;" class="hide-for-print">
             <button class="btn btn-primary" style="width: 19%;" onclick="next(-1)">Back</button>
             <button class="btn btn-primary" style="width: 80%;" onclick="next(1)">Next Tutorial</button> <br> <br>
         </div>
 
-        <div>
+        <div class="hide-for-print">
             <a href="https://github.com/LukeGrahamLandry/forge-modding-tutorial">
                 <div class="app">
                     <img src="img/github.png" style="width: 70px">
@@ -156,7 +173,6 @@
                 updateDisplayedTutorial();
                 location.hash = i;
             }
-            
         </script>
         
     </body>
