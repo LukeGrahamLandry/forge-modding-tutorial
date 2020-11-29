@@ -44,6 +44,9 @@ FirstMod.whatever -> YourMainModClass.whatever
 The getStartPositionForPosition function decides which chunk the structure will spawn in. It uses vanilla's 
 default algorithm based on a min and max distance. The structures can't be closer than min chunks or farther than max chunks.  
 
+The getStructureName returns the string that you will use with the locate command in game. It must be the same as 
+you use to register it later in Feature Init (with your modid: prefix).
+
 The getSeedModifier function returns a unique large number that is used as a seed for generating random numbers. 
 This makes sure that even if two structures have the same spawn location algorithm, they wont be in the same place.  
 
@@ -58,17 +61,56 @@ we're about to make to actually generate it.
 In your structures package, make a new class called StructureNamePieces (again, use your structure name). 
 The code for this class is [here](https://github.com/LukeGrahamLandry/forge-modding-tutorial/blob/master/src/main/java/com/lukegraham/firstmod/world/structures/HousePieces.java), and again, I'll explain. 
 
+The first feild is just the resource slocation of the structure's nbt file. If you have multiple nbt files to put together you can put thier 
+offsets from where the structure starts spawning in the OFFSETS map. For example if you have one piece that is the walls and one that's the roof, you might have the walls one up from the ground and the roof 5 up to be above the walls. The convention seems to be to just do the y offset in the map and the x/z later. 
 
-TODO ->  
-Next make a new class called structure name Pieces Again the code's linked in the description This first field is just the location of the structure's nbt file If you want you can have multiple of these and connect them when you spawn the structure This is a map of how all the different pieces are offset from where the structure starts spawning For example if you have one piece that is the walls and one that's the roof, you might have the walls one up from the ground and the roof 5 up to be above the walls I tend to just do the heights here and do x z offsets in the next function
+In the start function we assemble the pieces of the structure. You can offset things here aswell. So I have my piece added twice with the second time being shifted on the x axis. So I end up with two of my little houses. But if you have multiple pieces this is where you'd put them together
 
-In the start function we assemble the pieces of the structure You can offset things here aswell So I have my piece added twice with the second time being shifted on the x axis But if you have multiple pieces this is where you'd put them together
+This handleDataMarker function lets you do something where ever you put a data structure block in your structure. It runs for each data structure block. In my example I put a data block with the tag 'chest' above a chest I want to fill with loot. First we check what that block was called (stored in the function argument). If it was 'chest' we replace the structure block with air and set the chest under it to have a specific loot table. This lets us make the loot randomly generated but if you want you could set the items manually. Of course you can have structure blocks with different data tags in the same structure that behave differently.
 
-This handleDataMArker function lets you do something where ever you put a data structure block in your structure So first we check what you called it And if it was chest (as ours was) we replace the structure block with air And set the chest beinith it to have a loot table This lets us make the loot different for each structure but if you want you could set the items manually Of course you can have structure blocks with different data tags that behave differently
+```java
+@Override
+protected void handleDataMarker(String function, BlockPos pos, IWorld worldIn, Random rand, MutableBoundingBox sbb){
+    if ("chest".equals(function)) {
+        worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+        TileEntity tileentity = worldIn.getTileEntity(pos.down());
+        if (tileentity instanceof ChestTileEntity) { 
+            ResourceLocation ltable = new ResourceLocation(FirstMod.MOD_ID, "chest/house");
+            // ^ a reference to  src/resources/data/<mod id>/loot_tables/chest/house.json
+            ((ChestTileEntity)tileentity).setLootTable(ltable, rand.nextLong());
+        }
 
-So if we go to data src mod id and make a new folder called loot_tables and one in that called chest We can add a json file for our loot table. I'm sure there are other tutorials on how to make loot tables or look at the vanilla ones
+    }
+}
+```
 
-<- TODO
+If you go to src/resources/data/mod id and make a new folder called loot_tables and one in that a folder called chest. 
+You can add a json file for a loot table. You can name the file anything you want, just make sure its the same that you 
+reference in handleDataMarker. Here's a basic loot table that gives five items with name tags being twice as likely as saddles. 
+
+```json
+{
+  "pools": [{
+    "name": "basic_loot",
+    "rolls": 5,
+    "entries": [
+      {
+        "type": "item",
+        "name": "minecraft:saddle",
+        "weight": 1
+      },
+      {
+        "type": "item",
+        "name": "minecraft:name_tag",
+        "weight": 2
+      }
+    ]
+  }]
+}
+```
+
+You don't have to change anything in the setupPiece, readAdditional, or create methods. 
+They're just boiler plate that work for all structures
 
 ## Feature Init
 
@@ -122,7 +164,7 @@ private void setup(final FMLCommonSetupEvent event) {
 ## Run the game
 
 Finally, run the game, make a new world (or go far away to generate new chunks) 
-and use the locate command to find your structure
+and use the locate command to find your structure (of course use your own mod id and structure name)
 
 ```
 /locate modid:structure_name
