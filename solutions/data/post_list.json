@@ -1,0 +1,30 @@
+{
+    "forge": [
+        "How do I generate ores (1.16.2+)?",
+        "How do I make a biome (1.16.2+)?",
+        "How do I generate data jsons from code?",
+        "How can my blocks have transparency?",
+        "How do I add tooltips to items?",
+        "Opening container places block for a split second",
+        "What are the different ActionResultTypes?",
+        "How to make an item use durability when used in crafting.",
+        "How to send a message when the first player joins.",
+        "How to make custom recipes with multiple inputs.",
+        "How do I get user input with keybinds?"
+    ],
+    "both":[
+        "Why are my textures not working?",
+        "Why is my entity rotated?",
+        "Error: failed to verify authentication",
+        "Why is item called item.modid.name?",
+        "mods.toml no protocol error",
+        "IDE keyboard shortcuts"
+    ],
+    "fabric":[
+        "Why is it crashing with 'Mixins not found'?",
+        "How do I generate ores (1.16.2+)?",
+        "Client configuration doesn’t show up in IntelliJ",
+        "How do I make a biome (1.16.2+)?",
+        "Failed to locate library: lwjgl.dll"
+    ]
+}

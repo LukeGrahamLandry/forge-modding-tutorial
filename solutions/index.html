@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modding Solutions</title>
+
+    <style>
+        #content {
+            text-align: left;
+            width: 100%;
+            padding: 2rem;
+            display: inline-block;
+            font-size: 13pt;
+        }
+
+        a {
+            color: #366ed8;
+            text-decoration: none;
+        }
+
+        .row {
+            padding-bottom: 20px;
+            padding-right: 20px;
+            font-size: 1.1em;
+            display: table;
+            width: 100%;
+        }
+
+        body {
+            text-align: center;
+            font-family: source sans pro,helvetica neue,Arial,sans-serif;
+            font-weight: 400;
+            color: black;
+            overflow: hidden;
+        }
+
+        .side {
+            display: inline-block;
+            width: 30%;
+        }
+
+        .nav {
+            width: 100%;
+        }
+
+        .nav a {
+            background-color: rgb(0, 0, 0);
+            display: inline-block;
+            text-align: center;
+
+            padding: 0.5rem 0;
+            width: 20%;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+            background-color: rgb(45, 45, 45);
+        }
+    </style>
+    <link rel="stylesheet" id="theme" href="dark-theme.css">
+</head>
+<body>
+    <header class="nav">
+        <a href="#"> Home </a>
+        <a href="https://discord.gg/VbZVnRd"> Modding Help Discord </a>
+        <a href="https://www.youtube.com/playlist?list=PLxBLp3RqmUMEU5vrtMY6tgfP2lnJD0OUj"> Modding Tutorials </a>
+        <a href="https://www.patreon.com/LukeGrahamLandry"> Donate </a>
+    </header> <br> <br>
+
+    <div id="content">
+        <div class="side" id="forge">
+            <h1> Forge </h1> 
+            <a href="https://github.com/Binae/Forge-1.15-3D-Armor-for-dummies" class="row">How to make 3D Armor Models (1.15)</a>
+        </div>
+
+        <div class="side" id="both">
+            <h1> Both </h1>
+        </div>
+
+        <div class="side" id="fabric">
+            <h1> Fabric </h1>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        let solutions = loadJSON("data/post_list.json");
+
+        
+        function renderSolutions(side){
+            let questions = solutions[side];
+
+            let code = "";
+            for (i=0;i<questions.length;i++){
+                code += `<div class="row"><a href="read.html?=` + side + "/" + i + `">` + questions[i] + `</a></div>`;
+            }
+            document.getElementById(side).innerHTML += code;
+        }
+        
+        renderSolutions("forge");
+        renderSolutions("both");
+        renderSolutions("fabric");
+    </script>
+</body>
+</html>

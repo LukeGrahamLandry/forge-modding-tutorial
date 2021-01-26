@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <title> Article </title>
+        <script src="lib/markdownit.js"></script>
+        <link rel="stylesheet" href="lib/md.css">
+        <link rel="stylesheet" href="dark-theme.css">
+
+        <style>
+            #content {
+                text-align: left;
+                width: 100%;
+                max-width: 800px;
+                display: inline-block;
+                font-size: 13pt;
+                padding-top: 1rem;
+            }
+
+            .nav {
+                width: 100%;
+            }
+
+            .nav a {
+                background-color: rgb(0, 0, 0);
+                display: inline-block;
+                text-align: center;
+
+                padding: 0.5rem 0;
+                width: 20%;
+
+                color: rgb(0, 162, 255);
+                text-decoration: none;
+            }
+
+            .nav a:hover {
+                text-decoration: underline;
+                background-color: rgb(45, 45, 45);
+            }
+        </style>
+
+    <link rel="stylesheet" id="theme" href="">
+    </head>
+    <body>
+        <div style="text-align: center;">
+            <header class="nav" style="font-family: source sans pro,helvetica neue,Arial,sans-serif; font-weight: 400;">
+                <a href="index.html"> Home </a>
+                <a href="https://discord.gg/VbZVnRd"> Modding Help Discord </a>
+                <a href="https://www.youtube.com/playlist?list=PLxBLp3RqmUMEU5vrtMY6tgfP2lnJD0OUj"> Modding Tutorials </a>
+                <a href="https://www.patreon.com/LukeGrahamLandry"> Donate </a>
+            </header> <br> <br>
+
+            <div id="content" class="t markdown-body"> Loading Article... </div>
+        </div>
+
+        <script src="script.js"></script>
+        <script>
+            var md = window.markdownit();
+
+            function loadFile(path){
+                let t = (new Date()).getTime() / 1000;
+                let response = httpGet(path + "?timestamp=" + t);
+                let html;
+                if (response.code == 200){
+                    html = md.render(response.text);
+                } else {
+                    html = "<br> <b> Error " + response.code + ": File Not Found </b>"
+                }
+
+                document.getElementById("content").innerHTML = html;
+            }
+        
+            // let queryString = new URLSearchParams(window.location.search);
+            let articlePath = window.location.search.slice(2) + ".md";
+            loadFile("articles/" + articlePath);
+        </script>
+    </body>
+</html>

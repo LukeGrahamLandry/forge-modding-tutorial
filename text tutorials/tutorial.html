@@ -32,17 +32,10 @@
                 padding: 0.5rem;
                 display: inline-block;
             }
-            
-            #toggle {
-                z-index: 10;
-                right: 10px;
-                top: 5px;
-                position: fixed;
-            }
 
             #tutorial-select {
-                width: 100%;
-                max-width: 800px;
+                max-width: 500px;
+                width: 85%;
             }
 
             @media print {
@@ -59,15 +52,16 @@
         <link rel="stylesheet" id="theme" href="">
     </head>
     <body>
-        <div id="toggle" class="hide-for-print">
-            <label class="switch">
-                <input type="checkbox" id="dark" onclick="updateDarkmode()">
-                <span class="slider round"></span>
-            </label>
+        <div class="hide-for-print" style="width: 100%;max-width: 800px; display: inline-block;">
+            <div>
+                <select class="form-control" id="tutorial-select" onchange="setTutorial()" style="float: left;"></select>
+                <label class="switch" style="float: right;">
+                    <input type="checkbox" id="dark" onclick="updateDarkmode()">
+                    <span class="slider round"></span>
+                </label>
+            </div>
         </div>
-        <div class="hide-for-print">
-            <select class="form-control" id="tutorial-select" onchange="setTutorial()"></select>
-        </div>
+        
         <br><br>
         <div id="content" class="t markdown-body"> Loading Article... </div>
         <br> <br>
