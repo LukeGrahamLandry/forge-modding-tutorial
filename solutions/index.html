@@ -8,7 +8,7 @@
     <style>
         #content {
             text-align: left;
-            width: 100%;
+            width: 95%;
             padding: 2rem;
             display: inline-block;
             font-size: 13pt;
@@ -27,17 +27,18 @@
             width: 100%;
         }
 
+        @media only screen and (min-width: 600px) {
+            .side {
+                display: inline-block;
+                width: 30%;
+            }
+        }
+
         body {
             text-align: center;
             font-family: source sans pro,helvetica neue,Arial,sans-serif;
             font-weight: 400;
             color: black;
-            overflow: hidden;
-        }
-
-        .side {
-            display: inline-block;
-            width: 30%;
         }
 
         .nav {
